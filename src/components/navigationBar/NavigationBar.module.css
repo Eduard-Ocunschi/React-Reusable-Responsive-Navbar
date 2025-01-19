@@ -1,0 +1,189 @@
+.nav {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-width: 32rem;
+  padding: 1.5rem 20rem;
+  background-color: var(--color-primary);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  justify-content: space-between;
+
+  &,
+  .navLinks {
+    display: flex;
+    align-items: center;
+
+    li {
+      a:global(.active) {
+        color: var(--color-text-dark);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .logo {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .navLinks {
+    column-gap: 4rem;
+    font-size: 1.6rem;
+    list-style: none;
+    font-weight: 500;
+    transition: all 0.2s linear;
+
+    a {
+      color: var(--color-white);
+      text-decoration: none;
+      transition: all 0.2s linear;
+      display: block;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .hideNavLinks {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .openSearch .navLinks a {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .searchIcon {
+    color: var(--color-white);
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+
+  .searchBox {
+    position: absolute;
+    right: 25rem;
+    height: 4.5rem;
+    max-width: 55.5rem;
+    width: 100%;
+    min-width: 30rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s linear;
+
+    &.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .searchIcon {
+      position: absolute;
+      top: 50%;
+      left: 1.5rem;
+      color: var(--color-primary);
+      transform: translateY(-50%);
+    }
+
+    input {
+      font-size: 16px;
+      height: 100%;
+      width: 100%;
+      border: none;
+      outline: none;
+      border-radius: 6px;
+      background-color: var(--color-white);
+      padding: 0 1.5rem 0 4.5rem;
+    }
+  }
+
+  .navOpenBtn,
+  .navCloseBtn {
+    display: none;
+    color: white;
+    font-size: 2.4rem;
+    cursor: pointer;
+  }
+}
+
+/* Media Queries */
+@media screen and (max-width: 1160px) {
+  .nav {
+    padding: 1.5rem 10rem;
+
+    .searchBox {
+      right: 15rem;
+    }
+
+    .navCloseBtn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .nav {
+    padding: 1.5rem 5rem;
+
+    .searchBox {
+      right: 10rem;
+      max-width: 40rem;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    padding: 1.5rem 2rem;
+
+    .navOpenBtn,
+    .navCloseBtn {
+      display: block;
+    }
+
+    .navLinks {
+      position: fixed;
+      top: 0;
+      left: -100%;
+      height: 100%;
+      max-width: 28rem;
+      width: 100%;
+      padding-top: 10rem;
+      row-gap: 3rem;
+      flex-direction: column;
+      background-color: var(--color-black);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s ease;
+      z-index: 100;
+
+      &.open {
+        left: 0;
+      }
+    }
+
+    .hideNavLinks {
+      display: flex;
+    }
+
+    .searchBox {
+      top: calc(100% + 1rem);
+      max-width: calc(100% - 2rem);
+      right: 50%;
+      transform: translateX(50%);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+@media (hover: none) and (pointer: coarse) {
+  .navLinks a:hover {
+    transform: none;
+    z-index: 2;
+  }
+}
